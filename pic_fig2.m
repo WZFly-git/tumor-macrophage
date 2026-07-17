@@ -27,7 +27,7 @@ Q_pic = Q_pic';
 
 
 
-%% subfig in Fig3   --  1
+%% subfig in Fig2   --  1
 figure('Position', [0,0,1400,600]);
 hold on; grid on; box on;
 
@@ -38,12 +38,12 @@ xlabel('Time (days)');
 set(gca,'FontName','Airal','FontSize',16, 'YColor', 'k');
 xlim([0, 70]);
 
-% print('Figure/fig3/sub1','-dpng','-r600');
+% print('Figure/fig2/sub1','-dpng','-r600');
 
 
 
 
-%% subfig in Fig3   --  2
+%% subfig in Fig2   --  2
 figure('Position', [100,250,600,450]);
 hold on; grid on; box on;
 
@@ -55,11 +55,11 @@ ylabel('EM level');
 xlabel('Time (days)');
 set(gca,'FontName','Airal','FontSize',16, 'YColor', 'k');
 xlim([0, 70]);
-% print('Figure/fig3/sub2','-dpng','-r600');
+% print('Figure/fig2/sub2','-dpng','-r600');
 
 
 
-%% subfig in Fig3   --  3
+%% subfig in Fig2   --  3
 figure('Position', [100,250,600,450]);
 hold on; grid on; box on;
 
@@ -71,7 +71,7 @@ xlabel('Time (days)');
 set(gca,'FontName','Airal','FontSize',16, 'YColor', 'k');
 xlim([0, 70]);
 ylim([0, 1]);
-% print('Figure/fig3/sub3','-dpng','-r600');
+% print('Figure/fig2/sub3','-dpng','-r600');
 
 
 
@@ -79,7 +79,7 @@ ylim([0, 1]);
 
 
 
-%% subsubfig in Fig3.1
+%% subsubfig in Fig2.1
 
 
 for i = 1:8
@@ -92,7 +92,7 @@ for i = 1:8
         title('Initial Distribution');
     end
     set(gca,'FontName','Airal','FontSize',12, 'YColor', 'k');
-    % print(['Figure/fig3/sub1_',num2str(i)],'-dpng','-r600');
+    % print(['Figure/fig2/sub1_',num2str(i)],'-dpng','-r600');
 end
 
 
