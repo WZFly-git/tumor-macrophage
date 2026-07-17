@@ -1,5 +1,5 @@
 function main()
-% to get fig1 and fig3 required data
+% to get fig1 and fig2 required data
 
 
 tic;

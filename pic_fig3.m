@@ -1,101 +1,47 @@
 function pic_fig3()
 
-% The data for the drawing is sourced from 'main.m'
+namestyle = {'$\bar{\beta}$', '$\theta_{\hat{Q}}$', '$\lambda_\beta$', '$\theta_\beta$',...
+    '$\bar{\kappa}$', '$\bar{\mu}$','$\lambda_\mu$', '$\theta_\mu$', '$\nu$',...
+     '$\sigma$', '$\nu_u$','$K_{\hat{Q}}$'};
+
+%% double bar figure
+p_p = load('data/PRCC/p_p.dat');
+p_r = load('data/PRCC/p_r.dat');
+
+[~,index] = sort(p_p,'descend');
+
+s = [1,2,4,7,8,9,10,11,3,5,6,12];
+index = index(s);
+
+p_p = p_p(index);
+p_r = p_r(index);
 
 
+p = [p_p; p_r]';
 close all
+b = bar(p);
 
-global md N
-control();
+b(1).FaceColor = '#F70000';
+b(1).EdgeColor = 'none';
+clim([min(p(1,:)),max(p(1,:))]);
 
-x = linspace(0,1,N);
-T = -md.tau:md.h:md.end_Time;
-
-
-Q = load('output/tumor.dat');
-m = length(T);
-Q_total = sum(Q, 2);
-
-
-for i = 1:m
-    Q_pic(i,:) = Q(i,:)/sum(Q(i,:));
-    Z = trapz(x, Q_pic(i,:));
-    Mean(i) = trapz(x, x .* Q_pic(i,:)) / Z;
-end
-Q_pic = Q_pic';
+b(2).FaceColor ='#0000FB';
+b(2).EdgeColor = 'none';
+b(2).FaceAlpha = 1;
+b(2).EdgeAlpha = 1;
 
 
 
-
-%% subfig in Fig3   --  1
-figure('Position', [0,0,1400,600]);
-hold on; grid on; box on;
-
-plot(T, Q_total, 'Color', [0.98,0.106,0.294], 'linewidth', 2);
-
-ylabel('Total Tumor cells');
-xlabel('Time (days)');
-set(gca,'FontName','Airal','FontSize',16, 'YColor', 'k');
-xlim([0, 70]);
-
-% print('Figure/fig3/sub1','-dpng','-r600');
-
-
-
-
-%% subfig in Fig3   --  2
-figure('Position', [100,250,600,450]);
-hold on; grid on; box on;
-
-[p_X,p_Y] = meshgrid(T,x);
-pcolor(p_X, p_Y, Q_pic);
-shading interp;
-
-ylabel('EM level');
-xlabel('Time (days)');
-set(gca,'FontName','Airal','FontSize',16, 'YColor', 'k');
-xlim([0, 70]);
-% print('Figure/fig3/sub2','-dpng','-r600');
-
-
-
-%% subfig in Fig3   --  3
-figure('Position', [100,250,600,450]);
-hold on; grid on; box on;
-
-plot(T, Mean, 'Color', [0.98,0.106,0.294], 'linewidth', 2);
-
-ylabel('Mean of Distribution');
-xlabel('Time (days)');
-
-set(gca,'FontName','Airal','FontSize',16, 'YColor', 'k');
-xlim([0, 70]);
-ylim([0, 1]);
-% print('Figure/fig3/sub3','-dpng','-r600');
-
-
-
-
-
-
-
-%% subsubfig in Fig3.1
-
-
-for i = 1:8
-    figure('Position', [100,50,400,300]);
-    hold on; grid on; box on;
-    plot(x, Q_pic(:, i*20-17), 'Color', 'k', 'linewidth', 2);
-    xlabel('EM level');
-    ylim([0, 0.08])
-    if i == 1
-        title('Initial Distribution');
-    end
-    set(gca,'FontName','Airal','FontSize',12, 'YColor', 'k');
-    % print(['Figure/fig3/sub1_',num2str(i)],'-dpng','-r600');
-end
-
-
+grid on;
+xticks(1:16);
+xticklabels(namestyle(index));
+ylim([-1,1]);
+set(gca,'TickLabelInterpreter','latex', 'FontSize', 15);
+set(gcf,'unit','centimeters','position',[7 8 32 10]);
+title('Local sensitivity analysis of key parameters');
+% print('Figure/fig2/PRCC','-dpng','-r600');
 
 end
+
+
 

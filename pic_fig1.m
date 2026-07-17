@@ -50,11 +50,11 @@ set(gca, 'FontName', 'Arial', 'FontSize', 15);  % 整轴设为 Arial
 
 key = [9,25,42,58,75,92];
 R = sqrt(sum((Q_pic(45,key)-A).^2));
-content = sprintf('RMSE = %.3f', R);
+content = sprintf('R^2 = %.3f', R);
 text(0.6, 0.08, content, 'FontName', 'Arial', 'FontSize', 16);
 
 
-% print('Figure/fig1/Week 3','-dpng','-r600');
+print('Figure/fig1/Week 3','-dpng','-r600');
 
 
 %% Week 7
@@ -75,10 +75,10 @@ set(gca,'FontName','Airal','FontSize',15);
 
 key = [9,25,42,58,75,92];
 R = sqrt(sum((Q_pic(113,key)-B).^2));
-content = sprintf('RMSE = %.3f', R);
+content = sprintf('R^2 = %.3f', R);
 text(0.6, 0.08, content, 'FontName', 'Arial', 'FontSize', 16);
 
-% print('Figure/fig1/Week 7','-dpng','-r600');
+print('Figure/fig1/Week 7','-dpng','-r600');
 
 
 end
